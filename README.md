@@ -75,7 +75,6 @@ From the tracking CSV files, the project extracts:
 - queue-zone occupancy
 - speed estimates
 - flow-rate estimates
-- travel-time estimates
 
 The infrastructure sequences were also processed in batch to compare traffic behavior across multiple clips.
 
@@ -92,12 +91,6 @@ The SUMO stage includes:
 
 
 ## Important Folders
-
-### Core Data
-
-- `Dataset/`
-- `Dataset_2/`
-- `yolo_datasets/`
 
 ### Scripts
 
