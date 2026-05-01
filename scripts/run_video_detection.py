@@ -1,15 +1,14 @@
 from __future__ import annotations
 
+import argparse
 import os
 from pathlib import Path
 
 
 project_root = Path(__file__).resolve().parents[1]
 config_dir = project_root / ".ultralytics"
-model_path = project_root / "runs" / "detect" / "traffic_vehicle" / "weights" / "best.pt"
-
-# Set this to the video you want to test.
-video_path = project_root / "outputs" / "videos" / "infrastructure_3000.mp4"
+default_model_path = project_root / "models" / "traffic_vehicle_best.pt"
+default_video_path = project_root / "examples" / "sample_intersection.mp4"
 
 # Inference settings.
 conf_threshold = 0.25
@@ -19,21 +18,29 @@ save_dir = project_root / "runs" / "predict"
 run_name = "traffic_vehicle_video"
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Run vehicle detection on a video.")
+    parser.add_argument("--model", type=Path, default=default_model_path, help="Path to YOLO weights.")
+    parser.add_argument("--video", type=Path, default=default_video_path, help="Path to input video.")
+    return parser.parse_args()
+
+
 def main() -> None:
+    args = parse_args()
     config_dir.mkdir(parents=True, exist_ok=True)
     save_dir.mkdir(parents=True, exist_ok=True)
     os.environ["YOLO_CONFIG_DIR"] = str(config_dir)
 
     from ultralytics import YOLO
 
-    if not model_path.exists():
-        raise FileNotFoundError(f"Model weights not found: {model_path}")
-    if not video_path.exists():
-        raise FileNotFoundError(f"Video not found: {video_path}")
+    if not args.model.exists():
+        raise FileNotFoundError(f"Model weights not found: {args.model}")
+    if not args.video.exists():
+        raise FileNotFoundError(f"Video not found: {args.video}")
 
-    model = YOLO(str(model_path))
+    model = YOLO(str(args.model))
     results = model.predict(
-        source=str(video_path),
+        source=str(args.video),
         conf=conf_threshold,
         imgsz=imgsz,
         device=device,
@@ -48,7 +55,7 @@ def main() -> None:
         raise RuntimeError("No prediction results were returned.")
 
     output_dir = Path(results[0].save_dir)
-    print(f"Annotated video saved to: {output_dir / video_path.name}")
+    print(f"Annotated video saved to: {output_dir / args.video.name}")
 
 
 if __name__ == "__main__":

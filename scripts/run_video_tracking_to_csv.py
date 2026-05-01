@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import csv
 import os
 from pathlib import Path
@@ -7,10 +8,8 @@ from pathlib import Path
 
 project_root = Path(__file__).resolve().parents[1]
 config_dir = project_root / ".ultralytics"
-model_path = project_root / "runs" / "detect" / "traffic_vehicle" / "weights" / "best.pt"
-
-# Set this to the video you want to track.
-video_path = project_root / "outputs" / "videos" / "infrastructure_3000.mp4"
+default_model_path = project_root / "models" / "traffic_vehicle_best.pt"
+default_video_path = project_root / "examples" / "sample_intersection.mp4"
 
 # Tracking settings.
 conf_threshold = 0.25
@@ -21,7 +20,15 @@ save_dir = project_root / "runs" / "track"
 run_name = "traffic_vehicle_track_csv"
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Run tracking on a video and export CSV output.")
+    parser.add_argument("--model", type=Path, default=default_model_path, help="Path to YOLO weights.")
+    parser.add_argument("--video", type=Path, default=default_video_path, help="Path to input video.")
+    return parser.parse_args()
+
+
 def main() -> None:
+    args = parse_args()
     config_dir.mkdir(parents=True, exist_ok=True)
     save_dir.mkdir(parents=True, exist_ok=True)
     os.environ["YOLO_CONFIG_DIR"] = str(config_dir)
@@ -29,18 +36,18 @@ def main() -> None:
 
     from ultralytics import YOLO
 
-    if not model_path.exists():
-        raise FileNotFoundError(f"Model weights not found: {model_path}")
-    if not video_path.exists():
-        raise FileNotFoundError(f"Video not found: {video_path}")
+    if not args.model.exists():
+        raise FileNotFoundError(f"Model weights not found: {args.model}")
+    if not args.video.exists():
+        raise FileNotFoundError(f"Video not found: {args.video}")
 
-    model = YOLO(str(model_path))
+    model = YOLO(str(args.model))
 
     rows: list[list[object]] = []
     output_dir: Path | None = None
 
     results = model.track(
-        source=str(video_path),
+        source=str(args.video),
         conf=conf_threshold,
         imgsz=imgsz,
         device=device,
@@ -91,7 +98,7 @@ def main() -> None:
     if output_dir is None:
         raise RuntimeError("No tracking results were returned.")
 
-    csv_path = output_dir / f"{video_path.stem}_tracks.csv"
+    csv_path = output_dir / f"{args.video.stem}_tracks.csv"
     with csv_path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(
@@ -111,7 +118,7 @@ def main() -> None:
         )
         writer.writerows(rows)
 
-    print(f"Tracked video saved to: {output_dir / video_path.name}")
+    print(f"Tracked video saved to: {output_dir / args.video.name}")
     print(f"Tracking CSV saved to: {csv_path}")
     print(f"CSV rows written: {len(rows)}")
 

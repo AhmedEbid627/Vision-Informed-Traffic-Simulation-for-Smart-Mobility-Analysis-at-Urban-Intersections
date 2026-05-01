@@ -19,6 +19,8 @@ outputs/
 *.pth
 *.onnx
 *.engine
+!models/
+!models/*.pt
 
 # Root-level generated route artifact
 routes.rou.xml
