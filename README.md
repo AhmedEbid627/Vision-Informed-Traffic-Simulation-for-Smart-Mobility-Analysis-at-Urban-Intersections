@@ -24,7 +24,6 @@ The easiest way to try the project without the full dataset is to use the bundle
 
 - model: `models/traffic_vehicle_best.pt`
 - sample video: `examples/sample_intersection.mp4`
-- sample frame: `examples/sample_frame.jpg`
 
 ### Run detection on the sample video
 
@@ -68,7 +67,6 @@ python .\scripts\run_video_tracking_to_csv.py `
 - `scripts/analyze_queue_zone.py`
 - `scripts/compute_flow_rate.py`
 - `scripts/estimate_speeds.py`
-- `scripts/estimate_travel_time.py`
 - `scripts/process_infrastructure_batch.py`
 - `scripts/summarize_infrastructure_batch.py`
 - `scripts/generate_sumo_routes.py`
