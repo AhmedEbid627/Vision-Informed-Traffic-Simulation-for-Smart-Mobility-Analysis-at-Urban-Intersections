@@ -1,0 +1,29 @@
+SUMO Signal Scenario Comparison
+===============================
+
+Observed flow reference: 6.54 veh/min
+
+Scenario: baseline
+Description: Original timing extracted from the SUMO network.
+Completed trips: 388
+Flow: 6.47 veh/min
+Flow difference vs observed: 0.08 veh/min
+Average travel time: 25.81 s
+Average wait time: 15.12 s
+
+Scenario: favor_west_east
+Description: Longer main green for the west-east corridor, shorter cross direction.
+Completed trips: 391
+Flow: 6.52 veh/min
+Flow difference vs observed: 0.03 veh/min
+Average travel time: 24.23 s
+Average wait time: 13.74 s
+
+Scenario: favor_north_south
+Description: Longer main green for the north-south corridor, shorter west-east direction.
+Completed trips: 391
+Flow: 6.52 veh/min
+Flow difference vs observed: 0.03 veh/min
+Average travel time: 27.17 s
+Average wait time: 16.29 s
+

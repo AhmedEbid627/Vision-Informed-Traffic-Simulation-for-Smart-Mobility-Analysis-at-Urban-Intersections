@@ -1,0 +1,4 @@
+<additional>
+    <vType id="DEFAULT_VEHTYPE" vClass="passenger" guiShape="passenger" color="255,215,0" length="4.80" width="1.80" minGap="2.50" maxSpeed="13.90"/>
+    <vType id="passenger" vClass="passenger" guiShape="passenger" color="220,20,60" length="4.80" width="1.80" minGap="2.50" maxSpeed="13.90"/>
+</additional>

@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Local tool/cache folders
+.ultralytics/
+.tmp_predict_inputs/
+tmp/
+
+# Large data and generated training artifacts
+Dataset/
+Dataset_2/
+yolo_datasets/
+runs/
+outputs/
+
+# Model weights and large binaries
+*.pt
+*.pth
+*.onnx
+*.engine
+
+# Root-level generated route artifact
+routes.rou.xml
+
+# Generated SUMO result logs
+sumo_simulation/sumo_tripinfo.xml
+sumo_simulation/signal_scenarios/*_tripinfo.xml
+sumo_simulation/sumo_routes.rou.alt.xml
+
+# OS/editor noise
+Thumbs.db
+.DS_Store
+
+# Reference/proposal PDFs kept local, not in public repo
+*.pdf

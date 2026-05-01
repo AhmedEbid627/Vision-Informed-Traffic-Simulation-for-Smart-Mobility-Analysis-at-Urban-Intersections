@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<additional>
+    <tlLogic id="cluster_1605546592_28390917_28390982_28783700_#8more" type="static" programID="scenario" offset="0">
+        <phase duration="24" state="GGggrrrrGGGggrrrr" />
+        <phase duration="3" state="yyggrrrryyyggrrrr" />
+        <phase duration="5" state="rrGGrrrrrrrGGrrrr" />
+        <phase duration="3" state="rryyrrrrrrryyrrrr" />
+        <phase duration="45" state="rrrrGGggrrrrrGGgg" />
+        <phase duration="3" state="rrrryyggrrrrryygg" />
+        <phase duration="5" state="rrrrrrGGrrrrrrrGG" />
+        <phase duration="3" state="rrrrrryyrrrrrrryy" />
+    </tlLogic>
+</additional>

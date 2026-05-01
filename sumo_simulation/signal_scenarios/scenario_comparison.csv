@@ -1,0 +1,4 @@
+scenario,description,completed_trips,flow_rate_veh_min,observed_flow_veh_min,flow_difference_veh_min,avg_travel_time_sec,avg_wait_time_sec
+baseline,Original timing extracted from the SUMO network.,388,6.47,6.54,0.08,25.81,15.12
+favor_west_east,"Longer main green for the west-east corridor, shorter cross direction.",391,6.52,6.54,0.03,24.23,13.74
+favor_north_south,"Longer main green for the north-south corridor, shorter west-east direction.",391,6.52,6.54,0.03,27.17,16.29

@@ -1,0 +1,21 @@
+<configuration>
+    <input>
+        <net-file value="sumo_network.net.xml"/>
+        <route-files value="sumo_routes.rou.xml"/>
+        <additional-files value="vtypes.add.xml"/>
+    </input>
+    <output>
+        <tripinfo-output value="sumo_tripinfo.xml"/>
+    </output>
+    <time>
+        <begin value="0"/>
+        <end value="3600"/>
+    </time>
+    <gui_only>
+        <gui-settings-file value="sumo_view.settings.xml"/>
+    </gui_only>
+    <report>
+        <verbose value="true"/>
+        <no-step-log value="true"/>
+    </report>
+</configuration>
